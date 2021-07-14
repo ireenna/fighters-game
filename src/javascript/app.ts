@@ -2,9 +2,6 @@ import { getFighters } from './services/fightersService'
 import { createFighters } from './fightersView';
 import { IFighter } from './interfaces/IFighter';
 
-// const rootElement = document.getElementById('root');
-// const loadingElement = document.getElementById('loading-overlay');
-
 class App{
   constructor(){
     this.startApp();
@@ -19,7 +16,7 @@ class App{
         
         const fighters = await getFighters();
         const fightersElement = createFighters(fighters as IFighter[]);
-
+        
         App.rootElement.appendChild(fightersElement);
       } catch (error) {
         console.warn(error);

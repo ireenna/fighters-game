@@ -1,7 +1,9 @@
 import { createFighter } from './fighterView';
-// import { showFighterDetailsModal } from './modals/fighterDetails';
+import { showFighterDetailsModal } from './modals/fighterDetails';
 import { createElement } from './helpers/domHelper';
 import { fight } from './fight';
+import { showWinnerModal } from './modals/winner';
+import { getFighterDetails } from './services/fightersService';
 export function createFighters(fighters) {
     const selectFighterForBattle = createFightersSelector();
     const fighterElements = fighters.map(fighter => createFighter(fighter, showFighterDetails, selectFighterForBattle));
@@ -12,24 +14,28 @@ export function createFighters(fighters) {
 const fightersDetailsCache = new Map();
 async function showFighterDetails(event, fighter) {
     const fullInfo = await getFighterInfo(fighter._id);
-    // showFighterDetailsModal(fullInfo);
+    showFighterDetailsModal(fullInfo);
 }
 export async function getFighterInfo(fighterId) {
+    const fighterDetails = await getFighterDetails(fighterId);
+    return fighterDetails;
     // get fighter form fightersDetailsCache or use getFighterDetails function
 }
 function createFightersSelector() {
     const selectedFighters = new Map();
     return async function selectFighterForBattle(event, fighter) {
         const fullInfo = await getFighterInfo(fighter._id);
-        if (event?.target?.checked) {
+        if (event.target.checked) {
             selectedFighters.set(fighter._id, fullInfo);
         }
         else {
             selectedFighters.delete(fighter._id);
         }
         if (selectedFighters.size === 2) {
-            const winner = fight(selectedFighters.entries().next().value, selectedFighters.entries().next().value); //////
-            // showWinnerModal(winner);
+            const selFighters = [];
+            selectedFighters.forEach(x => selFighters.push(x));
+            const winner = fight(selFighters[0], selFighters[1]);
+            showWinnerModal(winner);
         }
     };
 }

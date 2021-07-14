@@ -19,7 +19,7 @@ function createName(name) {
     nameElement.innerText = name;
     return nameElement;
 }
-function createImage(source) {
+export function createImage(source) {
     const attributes = { src: source };
     const imgElement = createElement({ tagName: 'img', className: 'fighter-image', attributes });
     return imgElement;

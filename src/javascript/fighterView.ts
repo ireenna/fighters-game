@@ -28,7 +28,7 @@ function createName(name:string) {
   return nameElement;
 }
 
-function createImage(source:string) {
+export function createImage(source:string) {
   const attributes = { src: source };
   const imgElement = createElement({ tagName: 'img', className: 'fighter-image', attributes });
 

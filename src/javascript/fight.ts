@@ -1,7 +1,9 @@
 import { IFighter } from "./interfaces/IFighter";
+import { IFighterDetails } from "./interfaces/IFighterDetails";
 
-export function fight(firstFighter:IFighter, secondFighter:IFighter) {
+export function fight(firstFighter:IFighterDetails, secondFighter:IFighterDetails) {
   // return winner
+  return firstFighter;
 }
 
 export function getDamage(attacker:IFighter, enemy:IFighter) {

@@ -1,7 +1,5 @@
 import { getFighters } from './services/fightersService';
 import { createFighters } from './fightersView';
-// const rootElement = document.getElementById('root');
-// const loadingElement = document.getElementById('loading-overlay');
 class App {
     constructor() {
         this.startApp();

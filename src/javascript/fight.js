@@ -1,5 +1,6 @@
 export function fight(firstFighter, secondFighter) {
     // return winner
+    return firstFighter;
 }
 export function getDamage(attacker, enemy) {
     // damage = hit - block
