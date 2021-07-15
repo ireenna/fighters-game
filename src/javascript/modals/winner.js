@@ -1,4 +1,6 @@
+import App from "../app";
 import { createImage } from "../fighterView";
+import { clearWindow } from "../fightView";
 import { createElement } from "../helpers/domHelper";
 import { showModal } from "./modal";
 export function showWinnerModal(fighter) {
@@ -6,6 +8,11 @@ export function showWinnerModal(fighter) {
     const title = `${fighter.name} won!`;
     const bodyElement = createWinnerInfo(fighter);
     showModal({ title, bodyElement });
+    startGameAgain();
+}
+function startGameAgain() {
+    clearWindow('arena');
+    new App();
 }
 function createWinnerInfo(fighter) {
     const { source } = fighter;

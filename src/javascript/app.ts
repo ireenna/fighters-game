@@ -1,6 +1,7 @@
 import { getFighters } from './services/fightersService'
 import { createFighters } from './fightersView';
 import { IFighter } from './interfaces/IFighter';
+import { fighters } from './helpers/mockData';
 
 class App{
   constructor(){
