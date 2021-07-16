@@ -2,7 +2,6 @@ import { createFighter } from './fighterView';
 import { showFighterDetailsModal } from './modals/fighterDetails';
 import { createElement } from './helpers/domHelper';
 import { fight } from './fight';
-import { showWinnerModal } from './modals/winner';
 import { getFighterDetails } from './services/fightersService';
 export function createFighters(fighters) {
     const selectFighterForBattle = createFightersSelector();
@@ -34,8 +33,7 @@ function createFightersSelector() {
         if (selectedFighters.size === 2) {
             const selFighters = [];
             selectedFighters.forEach(x => selFighters.push(x));
-            const winner = fight(selFighters[0], selFighters[1]);
-            showWinnerModal(winner);
+            fight(selFighters[0], selFighters[1]);
         }
     };
 }

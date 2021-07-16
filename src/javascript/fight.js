@@ -1,24 +1,29 @@
-import { viewFight } from "./fightView";
+import { changeHealthBar, viewFight } from "./fightView";
+import { showWinnerModal } from "./modals/winner";
 export function fight(firstFighter, secondFighter) {
     // return winner
     viewFight(firstFighter, secondFighter);
     const attackPeriod = 500; //need to set timer
-    while (true) {
+    let timer = setInterval(function () {
         if (firstFighter.health > 0) {
-            secondFighter.health = secondFighter.health - getDamage(firstFighter, secondFighter);
+            secondFighter.health -= getDamage(firstFighter, secondFighter);
+            changeHealthBar(secondFighter.health, 'right-bar');
         }
         else {
             firstFighter.health = 0;
-            return secondFighter;
+            showWinnerModal(secondFighter);
+            clearInterval(timer);
         }
         if (secondFighter.health > 0) {
-            firstFighter.health = firstFighter.health - getDamage(secondFighter, firstFighter);
+            firstFighter.health -= getDamage(secondFighter, firstFighter);
+            changeHealthBar(firstFighter.health, 'left-bar');
         }
         else {
             secondFighter.health = 0;
-            return firstFighter;
+            showWinnerModal(firstFighter);
+            clearInterval(timer);
         }
-    }
+    }, attackPeriod);
 }
 // function attack(attacker:IFighterDetails, enemy:IFighterDetails){
 //   if(attacker.health>0){

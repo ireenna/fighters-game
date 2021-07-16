@@ -45,8 +45,7 @@ function createFightersSelector() {
     if (selectedFighters.size === 2) {
       const selFighters:IFighterDetails[] = [];
       selectedFighters.forEach(x=>selFighters.push(x));
-      const winner = fight(selFighters[0], selFighters[1]);
-      showWinnerModal(winner);
+      fight(selFighters[0], selFighters[1]);
     }
   }
 }
